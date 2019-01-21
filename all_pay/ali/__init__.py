@@ -183,7 +183,7 @@ class AliPay(object):
                                else self._app_notify_url)
         return self.sign_data(data)
 
-    def trade_pc_pay(self, return_url=None, **kwargs):
+    def trade_page_pay(self, return_url=None, **kwargs):
         biz_content = {
             'subject': kwargs['subject'],
             'out_trade_no': kwargs['out_trade_no'],

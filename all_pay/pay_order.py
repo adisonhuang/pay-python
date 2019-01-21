@@ -29,7 +29,7 @@ class PayOrder(object):
 
         def total_fee(self, value):
             """
-            价格
+            商品费用
             :param value:
             :return:
             """

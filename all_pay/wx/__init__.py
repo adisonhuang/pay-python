@@ -224,7 +224,7 @@ class WxPay(object):
         raw = self._unified_order(**kwargs)
         return raw['mweb_url'] + '&redirect_url=' + return_url
 
-    def trade_pc_pay(self, **kwargs):
+    def trade_page_pay(self, **kwargs):
         subject = kwargs.pop('subject')
         kwargs['body'] = subject
         kwargs.setdefault('trade_type', 'NATIVE')
@@ -351,7 +351,7 @@ class WxPay(object):
         data = self._fetch(url, kwargs)
         return self._verify_return_data(data)
 
-    def enterprise_payment(self, **kwargs):
+    def enterprise_pay(self, **kwargs):
         """
         使用企业对个人付款功能
         详细规则参考 https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_2

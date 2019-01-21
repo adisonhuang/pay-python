@@ -23,7 +23,7 @@ class Pay(object):
 
     def trade_wap_pay(self, pay_order, **kwargs):
         """
-        wap支付
+        手机网站支付
         :param pay_order:
         :param kwargs:
         :return:
@@ -33,7 +33,7 @@ class Pay(object):
 
     def trade_app_pay(self, pay_order, **kwargs):
         """
-        app支付
+        APP支付
         :param pay_order:
         :param kwargs:
         :return:
@@ -41,15 +41,15 @@ class Pay(object):
         kwargs = dict(pay_order.data, **kwargs)
         return self.pay.trade_app_pay(**kwargs)
 
-    def trade_pc_pay(self, pay_order, **kwargs):
+    def trade_page_pay(self, pay_order, **kwargs):
         """
-        pc支付
+        电脑网站支付
         :param pay_order:
         :param kwargs:
         :return:
         """
         kwargs = dict(pay_order.data, **kwargs)
-        return self.pay.trade_pc_pay(**kwargs)
+        return self.pay.trade_page_pay(**kwargs)
 
     def trade_js_pay(self, pay_order, **kwargs):
         """
@@ -75,7 +75,7 @@ class Pay(object):
 
     def trade_query(self, pay_response, **kwargs):
         """
-        订单查询
+        交易查询
         :param pay_response:
         :param kwargs:
         :return:
@@ -105,7 +105,7 @@ class Pay(object):
 
     def trade_cancel(self, pay_response, **kwargs):
         """
-        订单取消
+        交易取消
         :param pay_response:
         :param kwargs:
         :return:
@@ -113,10 +113,16 @@ class Pay(object):
         kwargs = dict(pay_response.data, **kwargs)
         return self.pay.trade_cancel(**kwargs)
 
-    def enterprise_payment(self, pay_order, **kwargs):
+    def enterprise_pay(self, pay_order, **kwargs):
+        """
+        微信企业付款到零钱
+        :param pay_order:
+        :param kwargs:
+        :return:
+        """
         kwargs = dict(pay_order.data, **kwargs)
         from wx import WxPay
         from pay_error import PayError
         if not isinstance(self.pay, WxPay):
             raise PayError('%s have not a valid method'.format(self.pay))
-        return self.pay.enterprise_payment(**kwargs)
+        return self.pay.enterprise_pay(**kwargs)
