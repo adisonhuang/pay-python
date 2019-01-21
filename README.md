@@ -64,12 +64,12 @@ WECHAT_CONFIG = {
 其中 `pay_type`为本项目所需，用来区分支付类型，其余为对应支付方式所需配置参数，具体参考对应支付方式对应的官方文档。
 
 
-#### [Pay](https://github.com/adisonhuang/pay-python/blob/master/pay/pay.py)
+#### [Pay类](https://github.com/adisonhuang/pay-python/blob/master/pay/pay.py)
 
 
 **支付网关，支付方式分配和转发入口**
 
-#### [PayOrder](https://github.com/adisonhuang/pay-python/blob/master/pay/pay_order.py)
+#### [PayOrder类](https://github.com/adisonhuang/pay-python/blob/master/pay/pay_order.py)
 
 **统一封装支付订单信息，主要用于支付下单**
 
@@ -81,7 +81,7 @@ order = PayOrder.Builder().subject('商品标题') .out_trade_no('商品订单�
 通过`Builder模式+链式调用`灵活组合通用参数和特殊参数
 更多参数说明参见[源码](https://github.com/adisonhuang/pay-python/blob/master/pay/pay_order.py)
 
-#### [PayResponse](https://github.com/adisonhuang/pay-python/blob/master/pay/pay_response.py)
+#### [PayResponse类](https://github.com/adisonhuang/pay-python/blob/master/pay/pay_response.py)
 
 **统一封装支付返回业务信息，主要用于支付查询**
 
