@@ -208,6 +208,6 @@ data = pay.trade_refund_query(response)
 
 本项目在具体支付模块的接入实现参考了一些开源项目
 
-支付宝模块基于[python-alipay-sdk](https://github.com/fzlee/alipay)
+[python-alipay-sdk](https://github.com/fzlee/alipay)
 
-微信模块基于[wx_pay_python](https://github.com/Jolly23/wx_pay_python)
+[wx_pay_python](https://github.com/Jolly23/wx_pay_python)
