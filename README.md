@@ -206,7 +206,7 @@ data = pay.trade_refund_query(response)
 
 ## 声明：
 
-本项目主要目标的是支付整合，统一支付API和数据结构，在具体支付模块的接入实现参考了一些开源项目
+本项目在具体支付模块的接入实现参考了一些开源项目
 
 支付宝模块基于[python-alipay-sdk](https://github.com/fzlee/alipay)
 
