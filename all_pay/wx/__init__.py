@@ -29,9 +29,9 @@ class WxPay(object):
         self._mch_key = config['mch_key']
         self._appsecret = config['app_secret']
         # 证书pem格式
-        self._api_cert_path = config['api_cert_path']
+        self._api_cert_path = config.setdefault('api_cert_path', '')
         # 证书密钥pem格式
-        self._api_key_path = config['api_key_path']
+        self._api_key_path = config.setdefault('api_key_path', '')
 
     def __repr__(self):
         return 'WX_PAY'
@@ -298,7 +298,7 @@ class WxPay(object):
         res = self._fetch(url, data)
         return self._verify_return_data(res)
 
-    def trade_refund(self, api_cert_path, api_key_path, **kwargs):
+    def trade_refund(self, **kwargs):
         """
         申请退款
         详细规则参考 https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=9_4
@@ -313,6 +313,8 @@ class WxPay(object):
             refund_fee: 退款金额
         :return: 退款申请返回结果
         """
+        if not self._api_cert_path or not self._api_key_path:
+            raise PayError(message='miss parameter _api_cert_path or _api_key_path')
         url = '{url}/secapi/pay/refund'.format(url=self.API_BASE_URL)
         trade_no = kwargs.pop('trade_no', None)
         kwargs['transaction_id'] = trade_no
@@ -322,7 +324,7 @@ class WxPay(object):
         kwargs.setdefault('nonce_str', nonce_str())
         kwargs.setdefault('sign', self._sign(kwargs))
 
-        data = self._fetch_with_ssl(url, kwargs, api_cert_path, api_key_path)
+        data = self._fetch_with_ssl(url, kwargs, self._api_cert_path, self._api_key_path)
         return self._verify_return_data(data)
 
     def trade_refund_query(self, **kwargs):
@@ -367,6 +369,8 @@ class WxPay(object):
             spbill_create_ip: 调用接口的机器Ip地址
         :return: 企业转账结果
         """
+        if not self._api_cert_path or not self._api_key_path:
+            raise PayError(message='miss parameter _api_cert_path or _api_key_path')
         url = '{url}/mmpaymkttransfers/promotion/transfers'.format(url=self.API_BASE_URL)
         kwargs.setdefault('mch_appid', self._appid)
         kwargs.setdefault('mchid', self._mch_id)

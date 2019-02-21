@@ -36,7 +36,7 @@ with open('README.rst', 'rb') as fp:
 with open('requirements.txt') as f:
     requirements = [l for l in f.read().splitlines() if l]
 
-VERSION = "1.0.1"
+VERSION = "1.0.3"
 
 LICENSE = "MIT"
 
